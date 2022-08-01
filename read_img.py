@@ -12,7 +12,7 @@ import os
 
 def read_image_label(path):
     """
-    read image and label
+    Read image and label
     """
     imageString = read_img(path)
     basename = os.path.basename(path)
