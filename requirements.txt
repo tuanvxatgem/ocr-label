@@ -3,3 +3,5 @@ opencv-contrib-python
 web.py==0.40.dev0
 torch 
 torchvision
+editdistance
+xlsxwriter

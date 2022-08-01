@@ -2,22 +2,23 @@
 """
 @author: wenlihaoyu
 """
-import web
-import time
-import sys
-import os
-from PIL import Image
 import json
+import time
 from glob import glob
-import traceback
-from read_img import read_image_label, correct_image, set_image_status
+
+import web
+from PIL import Image
+
 from config import image_path, correct_path, Nmax, timeOut, ocrAuto
+from read_img import read_image_label, correct_image, set_image_status
 
 if ocrAuto:
     # 是否自动调用OCR引擎进行纠偏
-    from crnn.crnn_torch import crnnOcr
+    from crnn.text_recognizer import TextRecognizer
+    text_recognizer = TextRecognizer()
+
 else:
-    crnnOcr = None
+    text_recognizer = None
 
 imagefiles = glob(image_path)  # 需要纠偏的图像
 imageNum = len(imagefiles)
@@ -66,8 +67,8 @@ class OCR:
         path = data['path']
         im = Image.open(path).convert('L')
         res = ''
-        if crnnOcr is not None:
-            res = crnnOcr(im)
+        if text_recognizer is not None:
+            res = text_recognizer.internal_inference([im])[0]
         return res
 
 
@@ -76,7 +77,7 @@ class Label:
     def GET(self):
 
         data = read_batch()
-        if data != []:
+        if data:
             post = {'data': data, 'labelUrl': 'label', 'ocrUrl': 'ocr'}
             return render.label(post)
         else:
@@ -108,8 +109,6 @@ urls = (
 app = web.application(urls, globals())
 
 render = web.template.render('templates', base='base')
-
-import json
 
 if __name__ == '__main__':
     app.run()

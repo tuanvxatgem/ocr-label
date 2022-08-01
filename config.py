@@ -5,5 +5,5 @@ timeOut = 60 * 60  ##超时时间,用于返回纠偏池
 ocrAuto = True  ##是否自动调用OCR接口进行纠偏
 ocrModel = 'crnn/ocr-lstm.pth'
 LSTM_FLAG = True
-chinesesModel = True
+japaneseModel = True
 GPU = False
