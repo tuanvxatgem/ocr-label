@@ -1,9 +1,9 @@
-## ocr 文本图像标注用于chinese-ocr项目训练  
+## OCR Text image annotation for japanese-ocr project training
 
-## web服务启动
+## Web service start
 ``` Bash
-cd ocr-label## 进入ocr-label目录
-python app.py 8080 ##8080端口号，可以设置任意端口
+cd ocr-label # Enter the ocr-label directory
+python app.py 8080 #8080 port number, you can set any port
 ```
 
 
@@ -11,7 +11,7 @@ python app.py 8080 ##8080端口号，可以设置任意端口
 ## 访问服务
 http://127.0.0.1:8080/label      
 
-<img width="500" height="300" src="https://github.com/chineseocr/ocr-label/blob/master/test/demo.png"/>
+<img width="500" height="300" src="test/demo.png"/>
 
 
 ## 参考
