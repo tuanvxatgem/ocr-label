@@ -5,3 +5,5 @@ torch
 torchvision
 editdistance
 xlsxwriter
+six
+
